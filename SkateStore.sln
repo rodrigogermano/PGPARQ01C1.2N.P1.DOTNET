@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E1FC67C1-92CB-4721-A51C-44B06DA81661}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{8A09662C-E47C-4A42-BE8A-7B787136188E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiSkateStore", "ApiSkateStore", "{BE6E2C00-541F-47D7-B5B9-6D9C145D3E16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CF798E28-43FC-44B6-B9B2-7447A32EAA06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiProducts", "ApiProducts", "{94C4F703-99C1-449C-A94E-274B60A75F6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkateStore.Api", "src\SkateStore.Api\SkateStore.Api.csproj", "{FE482F12-84A5-4C99-9F85-C10CCC34D71B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE482F12-84A5-4C99-9F85-C10CCC34D71B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE482F12-84A5-4C99-9F85-C10CCC34D71B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE482F12-84A5-4C99-9F85-C10CCC34D71B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE482F12-84A5-4C99-9F85-C10CCC34D71B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8A09662C-E47C-4A42-BE8A-7B787136188E} = {E1FC67C1-92CB-4721-A51C-44B06DA81661}
+		{BE6E2C00-541F-47D7-B5B9-6D9C145D3E16} = {CF798E28-43FC-44B6-B9B2-7447A32EAA06}
+		{CF798E28-43FC-44B6-B9B2-7447A32EAA06} = {E1FC67C1-92CB-4721-A51C-44B06DA81661}
+		{94C4F703-99C1-449C-A94E-274B60A75F6C} = {CF798E28-43FC-44B6-B9B2-7447A32EAA06}
+		{FE482F12-84A5-4C99-9F85-C10CCC34D71B} = {BE6E2C00-541F-47D7-B5B9-6D9C145D3E16}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6797A15-CF95-4621-9FAE-4BE24C632A1A}
+	EndGlobalSection
+EndGlobal
