@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SkateStore.Api.Settings
 {
@@ -6,7 +8,7 @@ namespace SkateStore.Api.Settings
     {
         public static void AddInjectionDependency(this IServiceCollection services)
         {
-              //services.addtra          
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
         }
     }
 }
