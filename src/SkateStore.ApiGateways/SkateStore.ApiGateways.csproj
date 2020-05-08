@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="**/*.proto" />
+    <Protobuf Include="Protos/*.proto" GrpcServices="Client" Generator="MSBuild:Compile" />
+    <None Remove="@(Protobuf)" />
   </ItemGroup>
 
   <ItemGroup>

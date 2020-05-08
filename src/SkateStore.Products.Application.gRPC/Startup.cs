@@ -16,7 +16,12 @@ namespace SkateStore.Products.Application.gRPC
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc();
+            services.AddGrpc(options => {
+                options.EnableDetailedErrors = true;
+                options.MaxReceiveMessageSize = 1 * 1024 * 1024; // 1 megabytes; 
+                options.MaxSendMessageSize = 5 * 1024 * 1024; // 5 megabytes;
+                options.ResponseCompressionLevel = System.IO.Compression.CompressionLevel.Optimal;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
