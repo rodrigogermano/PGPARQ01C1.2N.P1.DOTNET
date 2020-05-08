@@ -18,7 +18,7 @@
             this.Validate();
         }
 
-        public string Name { get; private set; }        
+        public string Name { get; private set; }
         protected override void Validate()
         {
             if (string.IsNullOrEmpty(Name))
