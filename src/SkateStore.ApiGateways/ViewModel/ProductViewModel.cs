@@ -1,4 +1,4 @@
-﻿namespace SkateStore.ApiGateways.V1.ViewModel
+﻿namespace SkateStore.ApiGateways.ViewModel
 {
     public class ProductViewModel
     {

@@ -21,7 +21,7 @@ export class MenuTopComponent implements OnInit {
     this.oauthService.logOut();
   }
 
-  public IsAutenticated() : boolean {
+  public IsAutenticated() : boolean {    
     return this.oauthService.hasValidIdToken();
   }
 }

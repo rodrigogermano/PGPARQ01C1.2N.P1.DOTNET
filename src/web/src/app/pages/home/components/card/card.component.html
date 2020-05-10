@@ -1,12 +1,12 @@
 <div class="row row-cols-1 row-cols-md-3 mt-4">
-    <div class="col mb-3">
-        <div class="card h-100">
-            <img src="https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-                class="rounded mx-auto d-block" alt="...">
+    <div class="col mb-3" *ngFor='let product of Products | async'>
+        <div class="card h-100">            
+            <img [src]="product.photo"
+                class="rounded mx-auto d-block">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
+                <h5 class="card-title">{{product.name}}</h5>
+                <p class="card-text">{{product.description}}</p>
+                <p class="card-text">{{product.price | currency:'BRL'}}</p>
                 <button type="button" class="btn btn-outline-success btn-lg btn-block">
                     <i class="material-icons md-18">
                         add_shopping_cart

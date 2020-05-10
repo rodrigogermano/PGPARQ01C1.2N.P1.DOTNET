@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { MenuTopModule } from './components/menu-top/menu-top.module';
 import { CarouselModule } from './components/carousel/carousel.module';
 import { FooterModule } from './components/footer/footer.module';
 import { CardComponent } from './pages/home/components/card/card.component';
+import { CreateProductComponent } from './pages/home/components/create-product/create-product.component';
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { CardComponent } from './pages/home/components/card/card.component';
     LoginCallbackComponent,    
     UnauthorizedComponent,
     HomeComponent,
-    CardComponent    
+    CardComponent,
+    CreateProductComponent    
   ],
   imports: [
     BrowserModule,
@@ -28,9 +32,13 @@ import { CardComponent } from './pages/home/components/card/card.component';
     OAuthModule.forRoot(),
     MenuTopModule,
     CarouselModule,
-    FooterModule
+    FooterModule,
+    FormsModule,
+    //BrowserAnimationsModule,
+    ModalModule.forRoot()
   ],
-  providers: [    
+  providers: [  
+    BsModalRef  
   ],
   bootstrap: [AppComponent]
 })
