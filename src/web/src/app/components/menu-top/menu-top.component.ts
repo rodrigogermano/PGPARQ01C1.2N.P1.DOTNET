@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-menu-top',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuTopComponent implements OnInit {
 
-  constructor() { }
+  constructor(private oauthService: OAuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {        
   }
 
+  public login() : void {     
+    this.oauthService.initImplicitFlow("login");    
+  }
+
+  public logout() : void{    
+    this.oauthService.logOut();
+  }
+
+  public IsAutenticated() : boolean {
+    return this.oauthService.hasValidIdToken();
+  }
 }

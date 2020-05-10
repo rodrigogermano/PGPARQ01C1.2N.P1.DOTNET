@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using SkateStore.ApiGateways.Settings;
 
 namespace SkateStore.ApiGateways
@@ -29,10 +33,19 @@ namespace SkateStore.ApiGateways
         {
             services.AddHealthChecks();
 
-            services.AddControllers();
+            services.AddControllers();            
 
             services.AddInjectionDependency(Configuration);
 
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "https://localhost:5001";
+                options.RequireHttpsMetadata = false;
+
+                options.Audience = "api1";
+            });
+            
             services.AddSwagger();
 
             services.AddCompression();
@@ -56,6 +69,7 @@ namespace SkateStore.ApiGateways
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

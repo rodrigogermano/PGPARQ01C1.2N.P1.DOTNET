@@ -23,8 +23,8 @@ namespace SkateStore.Api
         {
             services.AddHealthChecks();
 
-            services.AddControllers();            
-
+            services.AddControllers();
+                        
             services.AddInjectionDependency(Configuration);
 
             services.AddSwagger();

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Greet;
 using Grpc.Net.Client;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace SkateStore.ApiGateways.Controllers
 {
-    [ApiController]
+    [Authorize]
+    [ApiController]    
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
@@ -29,7 +31,7 @@ namespace SkateStore.ApiGateways.Controllers
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
 
-            var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            var channel = GrpcChannel.ForAddress("https://localhost:5002");
             var client = new Greeter.GreeterClient(channel);
 
             var response = await client.SayHelloAsync(
