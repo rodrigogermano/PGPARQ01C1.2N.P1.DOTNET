@@ -33,6 +33,8 @@ namespace SkateStore.ApiGateways
         {
             services.AddHealthChecks();
 
+            services.AddCorsAndConfig();
+
             services.AddControllers();            
 
             services.AddInjectionDependency(Configuration);

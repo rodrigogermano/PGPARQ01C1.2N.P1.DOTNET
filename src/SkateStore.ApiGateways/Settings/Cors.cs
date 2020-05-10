@@ -6,7 +6,7 @@ namespace SkateStore.ApiGateways.Settings
     public static class Cors
     {
         private static readonly string policyName = "AllowOrigin";
-        public static void AddCors(this IServiceCollection services)
+        public static void AddCorsAndConfig(this IServiceCollection services)
         {
             services.AddCors(option =>
             {

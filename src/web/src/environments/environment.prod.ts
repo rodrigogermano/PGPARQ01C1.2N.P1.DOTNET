@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlApiGateway: "https://localhost:44342/api"
 };
