@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Product } from 'src/app/model/Product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class CreateProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private oauthService: OAuthService) { }
 
   ngOnInit(): void {
   }
@@ -90,5 +92,9 @@ export class CreateProductComponent implements OnInit {
         return 'application/vnd.ms-outlook';
     }
     return type;
+  }
+
+  public IsAutenticated() : boolean {    
+    return this.oauthService.hasValidIdToken();
   }
 }

@@ -19,8 +19,9 @@ namespace SkateStore.ApiGateways.V1.Controllers
         public ProductsController(IHttpClientProvider httpClient)
         {
             _httpClient = httpClient;
-        }        
+        }
 
+        [AllowAnonymous]
         [HttpGet]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]

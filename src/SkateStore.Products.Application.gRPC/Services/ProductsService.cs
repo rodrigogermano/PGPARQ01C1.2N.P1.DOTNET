@@ -36,43 +36,15 @@ namespace SkateStore.Products.Application.gRPC
         public override async Task<ProductsReply> Get(Empty request, ServerCallContext context)
         {
 
-            var aa = await _productRepository.GetAsync();
+            var _listaDTO = await _productRepository.GetAsync();
 
-
-
-            var lista = new List<ProductBuf>();
-            lista.Add(new ProductBuf
-            {
-                Id = 1,
-                Name = "a",
-                Description = "a",
-                Price = 10,
-                Photo = "https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-            });
-            lista.Add(new ProductBuf
-            {
-                Id = 2,
-                Name = "b",
-                Description = "b",
-                Price = 20,
-                Photo = "https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-            });
-            lista.Add(new ProductBuf
-            {
-                Id = 3,
-                Name = "c",
-                Description = "c",
-                Price = 30,
-                Photo = "https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-            });
-            lista.Add(new ProductBuf
-            {
-                Id = 4,
-                Name = "d",
-                Description = "d",
-                Price = 40,
-                Photo = "https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-            });
+            var lista = _listaDTO.Select(product => new ProductBuf { 
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Photo = product.Photo,
+                Price = Convert.ToInt64(product.Price)
+            }).ToList();
 
             var result = new ProductsReply();
             result.Products.AddRange(lista);
