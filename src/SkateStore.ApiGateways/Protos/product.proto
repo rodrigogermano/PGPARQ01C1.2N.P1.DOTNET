@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package productsbuf;
+
+service ProductsBuf {  
+  rpc Get (google.protobuf.Empty) returns (ProductsReply);
+  rpc Post (ProductBuf) returns (ResultReplay);
+}
+
+message ProductsReply {
+    repeated ProductBuf Products = 1;
+}
+
+message ProductBuf {
+    int32  Id =1;
+    string Name=2;
+    string Description=3;
+    int64  Price=4;
+    string Photo=5;
+}
+
+message ResultReplay{
+    int32 StatusCode = 1;
+}

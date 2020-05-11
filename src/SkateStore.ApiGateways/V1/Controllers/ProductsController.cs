@@ -12,7 +12,7 @@ namespace SkateStore.ApiGateways.V1.Controllers
     [Route("api/[controller]")]
     [ApiVersion("1.0")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IHttpClientProvider _httpClient;
