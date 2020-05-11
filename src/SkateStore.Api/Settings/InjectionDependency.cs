@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using SkateStore.Api.Infrastructure.Contexts;
+using SkateStore.Api.Infrastructure.Repositories;
+using SkateStore.Api.Model;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SkateStore.Api.Settings
@@ -16,7 +18,9 @@ namespace SkateStore.Api.Settings
                 options.UseSqlServer(configuration.GetConnectionString("SkateStoreDbContext"));
             });
 
-            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();            
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            
         }
     }
 }

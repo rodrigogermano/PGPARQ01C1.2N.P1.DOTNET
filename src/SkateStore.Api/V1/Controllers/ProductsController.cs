@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SkateStore.Api.Model;
 using SkateStore.Api.ViewModel;
 using System.Collections.Generic;
 using System.Net.Mime;
@@ -12,48 +14,25 @@ namespace SkateStore.Api.V1.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
+        private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
+        public ProductsController(
+            IProductRepository productRepository,
+            IMapper mapper)
+        {
+            _productRepository = productRepository;
+            _mapper = mapper;
+        }       
+
         [HttpGet]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Get()
         {
-            var lista = new List<ProductViewModel>();
-            lista.Add(new ProductViewModel
-            {
-                Id = 1,
-                Name = "a",
-                Description = "a",
-                Price = 10,
-                Photo = "https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-            });
-            lista.Add(new ProductViewModel
-            {
-                Id = 2,
-                Name = "b",
-                Description = "b",
-                Price = 20,
-                Photo = "https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-            });
-            lista.Add(new ProductViewModel
-            {
-                Id = 3,
-                Name = "c",
-                Description = "c",
-                Price = 30,
-                Photo = "https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-            });
-            lista.Add(new ProductViewModel
-            {
-                Id = 4,
-                Name = "d",
-                Description = "d",
-                Price = 40,
-                Photo = "https://scene7.zumiez.com/is/image/zumiez/pdp_hero/Superior-Glow-Propaganda-8.0-Skateboard-Deck-_245325.jpg"
-            });
+            var products = _mapper.Map<List<ProductViewModel>>(await _productRepository.GetAsync());
 
-
-            return Ok(lista);
+            return Ok(products);
         }
 
         [HttpPost]
@@ -62,11 +41,12 @@ namespace SkateStore.Api.V1.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody] ProductViewModel data)
         {
+            var product = new Product(data.Name, data.Description, data.Price, data.Photo);
 
+            if (_productRepository.Save(product) > 0)
+                return StatusCode(201);
 
             return BadRequest();
-
-            //return StatusCode(201);
         }
     }
 }
